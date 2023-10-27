@@ -68,23 +68,31 @@ class RgbSelectorWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state): array {
+    if (empty($element['#description'])) {
+      $element['#description'] = $this->t('Acceptable charaters are [0-9 and A-F]');
+    }
     $element['rgb_group'] = $element + [
       '#type' => 'fieldset',
-      '#description' => $this->t('Acceptable charaters are [1,2,3,4,5,6,7,8,9,0,A,B,C,D,E,F]'),
     ];
     $element['rgb_group']['rgb_red'] = [
       '#title' => $this->getSetting('rgb_red_label'),
       '#type' => 'textfield',
       '#default_value' => $items[$delta]->rgb_red,
+      '#pattern' => '^[0-9a-fA-F]{2}$',
+      '#required' => $element['#required'],
     ];
     $element['rgb_group']['rgb_green'] = [
+      '#pattern' => '^[0-9a-fA-F]{2}$',
+      '#required' => $element['#required'],
       '#type' => 'textfield',
       '#title' => $this->getSetting('rgb_green_label'),
       '#default_value' => $items[$delta]->rgb_green,
     ];
     $element['rgb_group']['rgb_blue'] = [
+      '#required' => $element['#required'],
       '#type' => 'textfield',
       '#title' => $this->getSetting('rgb_blue_label'),
+      '#pattern' => '^[0-9a-fA-F]{2}$',
       '#default_value' => $items[$delta]->rgb_blue,
     ];
     return $element['rgb_group'];

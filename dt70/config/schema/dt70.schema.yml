@@ -2,14 +2,26 @@ field.value.dt70_rgb_selector:
   type: mapping
   label: Default value
   mapping:
-    value:
+    rgb_red:
       type: label
-      label: Value
+      label: Red
+    rgb_green:
+      type: label
+      label: Green
+    rgb_blue:
+      type: label
+      label: Blue
 
 field.widget.settings.dt70_rgb_selector:
   type: mapping
   label: rgb_selector widget settings
   mapping:
-    foo:
+    rgb_red:
       type: string
-      label: Foo
+      label: red
+    rgb_green:
+      type: string
+      label: green
+    rgb_blue:
+      type: string
+      label: blue
