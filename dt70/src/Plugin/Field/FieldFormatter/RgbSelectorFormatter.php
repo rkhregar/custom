@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\dt70\Plugin\Field\FieldFormatter;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
-use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Plugin implementation of the 'rgb_selector' formatter.
@@ -29,6 +29,9 @@ final class RgbSelectorFormatter extends FormatterBase {
       $html = "
       <h3 style='color : {$rgb_code}' >RGB Color code - {$rgb_code}</h3>
       <div style='background-color:{$rgb_code};'><h2>RGB Color {$rgb_code}</h2></div>
+
+      <h3 style='color : {$item->color_picker}' >Color picker Color code - {$item->color_picker}</h3>
+      <div style='background-color:{$item->color_picker};'><h2>Color Picker Color {$item->color_picker}</h2></div>
       ";
       $element[$delta] = [
         '#markup' => new FormattableMarkup($html, []),

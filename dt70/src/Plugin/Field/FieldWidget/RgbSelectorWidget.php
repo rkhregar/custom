@@ -24,6 +24,7 @@ class RgbSelectorWidget extends WidgetBase {
    */
   public static function defaultSettings(): array {
     $setting = [
+      'color_picker_label' => 'Color Picker Label',
       'rgb_red_label' => 'Red',
       'rgb_green_label' => 'Green',
       'rgb_blue_label' => 'Blue',
@@ -36,6 +37,11 @@ class RgbSelectorWidget extends WidgetBase {
    */
   public function settingsForm(array $form, FormStateInterface $form_state): array {
     $form = parent::settingsForm($form, $form_state);
+    $form['color_picker'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Color Picker'),
+      '#default_value' => $this->getSetting('color_picker_label'),
+    ];
     $form['rgb_red'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Red'),
@@ -58,6 +64,7 @@ class RgbSelectorWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function settingsSummary(): array {
+    $summary[] = $this->t('Color Picker: @label', ['@label' => $this->getSetting('color_picker_label')]);
     $summary[] = $this->t('Red: @label', ['@label' => $this->getSetting('rgb_red_label')]);
     $summary[] = $this->t('Green: @label', ['@label' => $this->getSetting('rgb_green_label')]);
     $summary[] = $this->t('Blue: @label', ['@label' => $this->getSetting('rgb_blue_label')]);
@@ -73,6 +80,11 @@ class RgbSelectorWidget extends WidgetBase {
     }
     $element['rgb_group'] = $element + [
       '#type' => 'fieldset',
+    ];
+    $element['rgb_group']['color_picker'] = [
+      '#type' => 'color',
+      '#title' => $this->t('Color'),
+      '#default_value' => $items[$delta]->color_picker,
     ];
     $element['rgb_group']['rgb_red'] = [
       '#title' => $this->getSetting('rgb_red_label'),

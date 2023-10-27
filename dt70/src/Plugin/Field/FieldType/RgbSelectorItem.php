@@ -46,6 +46,9 @@ final class RgbSelectorItem extends FieldItemBase {
     // @DCG
     // See /core/lib/Drupal/Core/TypedData/Plugin/DataType directory for
     // available data types.
+    $properties['color_picker'] = DataDefinition::create('string')
+      ->setLabel(t('Color Picker'));
+
     $properties['rgb_red'] = DataDefinition::create('string')
       ->setLabel(t('Red color'));
 
@@ -64,6 +67,12 @@ final class RgbSelectorItem extends FieldItemBase {
   public static function schema(FieldStorageDefinitionInterface $field_definition): array {
 
     $columns = [
+      'color_picker' => [
+        'type' => 'varchar',
+        'not null' => FALSE,
+        'description' => 'Column description.',
+        'length' => 255,
+      ],
       'rgb_red' => [
         'type' => 'varchar',
         'not null' => FALSE,
