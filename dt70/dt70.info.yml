@@ -1,0 +1,5 @@
+name: 'dt70'
+type: module
+description: 'custom module for dt 70 excersize'
+package: Custom
+core_version_requirement: ^10
