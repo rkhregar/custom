@@ -1,0 +1,7 @@
+name: 'dt71'
+type: module
+description: 'Dtupal training 71 excersize'
+package: Custom
+core_version_requirement: ^10
+dependencies:
+  - drupal:user
