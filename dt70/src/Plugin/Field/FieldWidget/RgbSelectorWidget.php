@@ -75,8 +75,14 @@ class RgbSelectorWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state): array {
-    if (empty($element['#description'])) {
-      $element['#description'] = $this->t('Acceptable charaters are [0-9 and A-F]');
+    $roles = \Drupal::currentUser()->getRoles();
+    $access = FALSE;
+    $element['#description'] = $this->t("You don't have permission to this field");
+    if (in_array('administrator', $roles)) {
+      $access = TRUE;
+      if (empty($element['#description'])) {
+        $element['#description'] = $this->t('Acceptable charaters are [0-9 and A-F]');
+      }
     }
     $element['rgb_group'] = $element + [
       '#type' => 'fieldset',
@@ -84,11 +90,13 @@ class RgbSelectorWidget extends WidgetBase {
     $element['rgb_group']['color_picker'] = [
       '#type' => 'color',
       '#title' => $this->t('Color'),
+      '#access' => $access,
       '#default_value' => $items[$delta]->color_picker,
     ];
     $element['rgb_group']['rgb_red'] = [
       '#title' => $this->getSetting('rgb_red_label'),
       '#type' => 'textfield',
+      '#access' => $access,
       '#default_value' => $items[$delta]->rgb_red,
       '#pattern' => '^[0-9a-fA-F]{2}$',
       '#required' => $element['#required'],
@@ -99,12 +107,14 @@ class RgbSelectorWidget extends WidgetBase {
       '#type' => 'textfield',
       '#title' => $this->getSetting('rgb_green_label'),
       '#default_value' => $items[$delta]->rgb_green,
+      '#access' => $access,
     ];
     $element['rgb_group']['rgb_blue'] = [
       '#required' => $element['#required'],
       '#type' => 'textfield',
       '#title' => $this->getSetting('rgb_blue_label'),
       '#pattern' => '^[0-9a-fA-F]{2}$',
+      '#access' => $access,
       '#default_value' => $items[$delta]->rgb_blue,
     ];
     return $element['rgb_group'];
