@@ -1,0 +1,5 @@
+name: 'custom_event'
+type: module
+description: 'event and event subscriber drupal training'
+package: Custom
+core_version_requirement: ^10

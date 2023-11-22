@@ -1,0 +1,10 @@
+langcode: "en"
+status: true
+dependencies:
+  module:
+    - node
+id: set_featured_node
+label: "Set Node as featured node"
+type: node
+plugin: custom_action_setfeaturednode
+configuration: {}

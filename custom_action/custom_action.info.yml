@@ -1,0 +1,5 @@
+name: 'custom_action'
+type: module
+description: 'Custom action'
+package: Custom
+core_version_requirement: ^10
