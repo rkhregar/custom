@@ -4,3 +4,16 @@
  * @file
  * Primary module hooks for custom_action module.
  */
+
+use Drupal\Core\Url;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_user_login().
+ */
+
+function custom_action_user_login(UserInterface $account) {
+  $url = Url::fromRoute('custom.welcome.page')->toString();
+  $request = \Drupal::requestStack()->getCurrentRequest();
+  $request->query->set('destination', $url);
+}
