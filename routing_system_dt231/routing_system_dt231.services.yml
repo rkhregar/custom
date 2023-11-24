@@ -1,0 +1,10 @@
+services:
+  routing_system_dt231.route_subscriber:
+    class: Drupal\routing_system_dt231\EventSubscriber\RoutingSystemDt231RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+
+  access_check.routing_system_dt231.foo:
+    class: Drupal\routing_system_dt231\Access\AccessChecker
+    tags:
+      - { name: access_check, applies_to: _access_check_routing_system_dt231 }

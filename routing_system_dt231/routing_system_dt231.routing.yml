@@ -1,0 +1,9 @@
+routing_system_dt231.campaign_value:
+  path: '/campaign/value/{id}'
+  defaults:
+    _title: 'Campaign Value'
+    _controller: '\Drupal\routing_system_dt231\Controller\RoutingSystemDt231Controller'
+  requirements:
+    _role: administrator, content_editor
+    _permission: 'access the custom page'
+    _access_check_routing_system_dt231: TRUE

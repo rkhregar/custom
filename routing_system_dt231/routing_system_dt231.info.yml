@@ -1,0 +1,5 @@
+name: 'routingSystemDT231'
+type: module
+description: 'Drupal trainging 231 Routing system'
+package: Custom
+core_version_requirement: ^10
